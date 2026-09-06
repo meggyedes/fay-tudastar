@@ -73,12 +73,10 @@
               <li class="nav-item"><a class="nav-link{% if isTopics %} active{% endif %}" href="{{ '/topics/' | url }}"{% if isTopics %} aria-current="page"{% endif %}>Témák</a></li>
               <li class="nav-item"><a class="nav-link{% if isSearch %} active{% endif %}" href="{{ '/search/' | url }}"{% if isSearch %} aria-current="page"{% endif %}>Keresés</a></li>
             </ul>
-            {% if isHome %}
-              <form class="hp-nav-search" role="search" aria-label="Gyorskeresés" action="{{ '/search/' | url }}" method="get">
-                <button type="submit" aria-label="Keresés indítása">{{ icon('search') }}</button>
-                <label for="nav-query" class="visually-hidden">Keresőkifejezés</label><input id="nav-query" type="search" name="q" placeholder="Keresés…" required>
-              </form>
-            {% endif %}
+            <form class="hp-nav-search" role="search" aria-label="Gyorskeresés" action="{{ '/search/' | url }}" method="get">
+              <button type="submit" aria-label="Keresés indítása">{{ icon('search') }}</button>
+              <label for="nav-query" class="visually-hidden">Keresőkifejezés</label><input id="nav-query" type="search" name="q" placeholder="Keresés…" required>
+            </form>
             <button class="btn theme-toggle ms-lg-3" type="button" data-theme-toggle aria-label="Sötét mód bekapcsolása" aria-pressed="false"><span class="theme-toggle__icon">{{ icon('contrast') }}</span><span data-theme-label>Téma</span></button>
           </div>
         </div>

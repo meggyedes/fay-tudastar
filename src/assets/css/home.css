@@ -36,7 +36,7 @@
 .hp-tone-navy { --hp-accent: #3278b7; --hp-deep: #061b28; --hp-glow: #315877; --hp-tint: #e6eff7; --hp-badge-ink: #20456c; }
 
 /* Compact Bootstrap navbar, search and the existing working theme toggle. */
-.homepage .site-header { position: relative; background: var(--hp-surface); border-color: var(--hp-line); backdrop-filter: none; }
+.homepage .site-header { position: sticky !important; top: 0; background: var(--hp-surface); border-color: var(--hp-line); backdrop-filter: none; }
 .homepage .site-header .navbar { min-height: 74px; padding: 9px 0 !important; }
 .homepage .site-header .container { width: calc(100% - 72px); max-width: 1464px; padding: 0; }
 .homepage .navbar-brand { gap: 12px; margin-right: 30px; padding: 0; }
