@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+title: Keresés
+description: Keresés az Iskolai Tudástár teljes tananyagában.
+---
+
+<section class="container page-shell py-5">
+  <div class="reading-column mb-5">
+    <p class="section-kicker mb-2">Teljes tudástár</p>
+    <h1 class="page-title">Keresés</h1>
+    <p class="page-intro mb-0">Keress lecke címére, tantárgyra, témára vagy a tananyag teljes szövegében.</p>
+  </div>
+
+  <div class="search-panel surface-panel p-4 p-md-5">
+    <form class="search-form" data-search-form role="search" novalidate>
+      <label class="form-label fw-semibold" for="search-query">Keresőkifejezés</label>
+      <div class="input-group input-group-lg">
+        <input class="form-control" id="search-query" name="q" type="search" placeholder="Például: feszültség" autocomplete="off" data-search-input>
+        <button class="btn btn-accent" type="submit">Keresés</button>
+      </div>
+    </form>
+    <p class="search-status mb-0 mt-3" data-search-status role="status" aria-live="polite">Írj be egy keresőkifejezést.</p>
+  </div>
+
+  <div class="search-results mt-4" data-search-results aria-live="polite"></div>
+  <noscript><p class="alert alert-warning mt-4">A kereső használatához JavaScript szükséges.</p></noscript>
+</section>
+
+<script type="module" src="{{ '/assets/js/search.js' | url }}"></script>

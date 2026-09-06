@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: Témák
+description: Az Iskolai Tudástár témái és kapcsolódó leckéi.
+---
+
+<section class="container page-shell py-5">
+  <div class="reading-column mb-5">
+    <p class="section-kicker mb-2">Kapcsolódások</p>
+    <h1 class="page-title">Témák</h1>
+    <p class="page-intro mb-0">A témák a lecke-Marketdown fájlokból automatikusan jönnek létre. Egy téma minden kapcsolódó leckét összeköt.</p>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3">
+    {% for topic in topics %}
+      <div class="col">
+        <article class="knowledge-card topic-card p-4 h-100">
+          <p class="section-kicker mb-3">{{ topic.lessonCount }} lecke · {{ topic.subjectCount }} tantárgy</p>
+          <h2 class="h4 mb-0"><a class="stretched-link text-decoration-none" href="{{ ('/topics/' + topic.slug + '/') | url }}">{{ topic.name }}</a></h2>
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+permalink: 404.html
+title: Az oldal nem található
+description: A keresett oldal nem található az Iskolai Tudástárban.
+---
+
+<section class="container page-shell error-page py-5">
+  <div class="surface-panel reading-column p-4 p-md-5">
+    <p class="section-kicker mb-3">404</p>
+    <h1 class="page-title">Az oldal nem található.</h1>
+    <p class="page-intro mb-4">Lehet, hogy a keresett tananyag másik helyre került, vagy a hivatkozás nem teljes.</p>
+    <div class="d-flex flex-wrap gap-2">
+      <a class="btn btn-accent" href="{{ '/' | url }}">Vissza a főoldalra</a>
+      <a class="btn btn-outline-secondary" href="{{ '/search/' | url }}">Keresés</a>
+    </div>
+  </div>
+</section>

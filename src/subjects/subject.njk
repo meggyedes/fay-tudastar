@@ -1,0 +1,66 @@
+---
+pagination:
+  data: subjects
+  size: 1
+  alias: subject
+permalink: "subjects/{{ subject.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ subject.name }}"
+  description: "{{ subject.name }} leckéi az Iskolai Tudástárban."
+---
+
+<section class="container page-shell py-5">
+  <header class="subject-header reading-column mb-5">
+    <p class="section-kicker mb-2">Tantárgy</p>
+    <h1 class="page-title">{{ subject.name }}</h1>
+    <p class="page-intro mb-0">A tantárgyhoz tartozó leckék időrendi sorrendben.</p>
+  </header>
+
+  <section aria-label="Tantárgyi összesítés" class="subject-summary row row-cols-1 row-cols-sm-3 g-3 mb-5">
+    <div class="col">
+      <div class="surface-panel p-3 h-100">
+        <p class="small text-uppercase fw-semibold text-body-secondary mb-2">Lecke</p>
+        <p class="subject-summary__value mb-0">{{ subject.lessons.length }}</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="surface-panel p-3 h-100">
+        <p class="small text-uppercase fw-semibold text-body-secondary mb-2">Téma</p>
+        <p class="subject-summary__value mb-0">{{ subject.topicCount }}</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="surface-panel p-3 h-100">
+        <p class="small text-uppercase fw-semibold text-body-secondary mb-2">Legutóbbi lecke</p>
+        <p class="subject-summary__date mb-0">{{ subject.latestLesson.date | hungarianDate }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="subject-lessons-heading">
+    <div class="section-heading d-flex flex-column flex-sm-row align-items-sm-end justify-content-between gap-2 mb-3">
+      <div>
+        <p class="section-kicker mb-2">Tananyag</p>
+        <h2 id="subject-lessons-heading" class="mb-0">Leckék</h2>
+      </div>
+      <a class="section-link" href="{{ '/lessons/' | url }}">Összes lecke</a>
+    </div>
+
+    <div class="subject-lesson-list">
+      {% for lesson in subject.lessons %}
+        <article class="subject-lesson surface-panel p-4">
+          <div class="subject-lesson__date">{{ lesson.date | hungarianDate }}</div>
+          <div>
+            <h3 class="h4 mb-2"><a class="stretched-link text-decoration-none" href="{{ ('/lessons/' + lesson.slug + '/') | url }}">{{ lesson.title }}</a></h3>
+            <div class="d-flex flex-wrap gap-1">
+              {% for topic in lesson.topics %}
+                <a class="topic-badge" href="{{ ('/topics/' + (topic | slugify) + '/') | url }}">{{ topic }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</section>

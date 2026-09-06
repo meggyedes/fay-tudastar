@@ -1,0 +1,23 @@
+---
+permalink: sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% if site.url %}
+  <url><loc>{{ site.url }}{{ '/' | url }}</loc></url>
+  <url><loc>{{ site.url }}{{ '/subjects/' | url }}</loc></url>
+  <url><loc>{{ site.url }}{{ '/lessons/' | url }}</loc></url>
+  <url><loc>{{ site.url }}{{ '/topics/' | url }}</loc></url>
+  <url><loc>{{ site.url }}{{ '/search/' | url }}</loc></url>
+{% for subject in subjects %}
+  <url><loc>{{ site.url }}{{ ('/subjects/' + subject.slug + '/') | url }}</loc></url>
+{% endfor %}
+{% for lesson in lessons %}
+  <url><loc>{{ site.url }}{{ ('/lessons/' + lesson.slug + '/') | url }}</loc></url>
+{% endfor %}
+{% for topic in topics %}
+  <url><loc>{{ site.url }}{{ ('/topics/' + topic.slug + '/') | url }}</loc></url>
+{% endfor %}
+{% endif %}
+</urlset>

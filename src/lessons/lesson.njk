@@ -1,0 +1,79 @@
+---
+pagination:
+  data: lessons
+  size: 1
+  alias: lesson
+permalink: "lessons/{{ lesson.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ lesson.title }}"
+  description: "{{ lesson.title }} – {{ lesson.subject }}"
+---
+
+{% set toc = lesson.content | tableOfContents %}
+
+<section class="container page-shell py-4 py-lg-5">
+  <nav aria-label="Morzsanavigáció" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="{{ '/' | url }}">Főoldal</a></li>
+      <li class="breadcrumb-item"><a href="{{ '/subjects/' | url }}">Tantárgyak</a></li>
+      <li class="breadcrumb-item"><a href="{{ ('/subjects/' + lesson.subjectSlug + '/') | url }}">{{ lesson.subject }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ lesson.title }}</li>
+    </ol>
+  </nav>
+
+  <div class="lesson-layout">
+    <article class="lesson-article reading-column" data-pagefind-body>
+      <header class="lesson-header mb-5">
+        <p class="section-kicker mb-2" data-pagefind-meta="subject" data-pagefind-weight="3.0">{{ lesson.subject }}</p>
+        <h1 class="page-title" data-pagefind-meta="title" data-pagefind-weight="5.0">{{ lesson.title }}</h1>
+        <time class="lesson-date mb-3 d-block" datetime="{{ lesson.date }}" data-pagefind-meta="date">{{ lesson.date | hungarianDate }}</time>
+        <div class="d-flex flex-wrap gap-1" aria-label="Kapcsolódó témák" data-pagefind-meta="topics" data-pagefind-weight="3.0">
+          {% for topic in lesson.topics %}
+            <a class="topic-badge" href="{{ ('/topics/' + (topic | slugify) + '/') | url }}">{{ topic }}</a>
+          {% endfor %}
+        </div>
+      </header>
+
+      <div class="lesson-content">
+        {{ lesson.content | markdown | safe }}
+      </div>
+
+      <footer class="lesson-footer mt-5 pt-4">
+        <div class="lesson-return-links mb-4">
+          <a class="btn btn-outline-secondary" href="{{ ('/subjects/' + lesson.subjectSlug + '/') | url }}">Vissza a tantárgyhoz</a>
+          <a class="btn btn-link" href="{{ '/lessons/' | url }}">Összes lecke</a>
+        </div>
+        {% if lesson.previous or lesson.next %}
+          <nav class="lesson-pagination" aria-label="Lecke navigáció">
+            {% if lesson.previous %}
+              <a class="lesson-pagination__link" href="{{ ('/lessons/' + lesson.previous.slug + '/') | url }}">
+                <span class="lesson-pagination__label">Előző lecke</span>
+                <span>{{ lesson.previous.title }}</span>
+              </a>
+            {% else %}
+              <span></span>
+            {% endif %}
+            {% if lesson.next %}
+              <a class="lesson-pagination__link lesson-pagination__link--next" href="{{ ('/lessons/' + lesson.next.slug + '/') | url }}">
+                <span class="lesson-pagination__label">Következő lecke</span>
+                <span>{{ lesson.next.title }}</span>
+              </a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      </footer>
+    </article>
+
+    {% if toc.length >= 5 %}
+      <aside class="lesson-toc surface-panel p-3" aria-label="Tartalomjegyzék">
+        <p class="lesson-toc__title">Tartalom</p>
+        <ol class="lesson-toc__list">
+          {% for heading in toc %}
+            <li class="lesson-toc__item lesson-toc__item--level-{{ heading.level }}"><a href="#{{ heading.id }}">{{ heading.title }}</a></li>
+          {% endfor %}
+        </ol>
+      </aside>
+    {% endif %}
+  </div>
+</section>

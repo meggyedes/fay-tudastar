@@ -1,0 +1,54 @@
+---
+pagination:
+  data: topics
+  size: 1
+  alias: topic
+permalink: "topics/{{ topic.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ topic.name }}"
+  description: "{{ topic.name }} témához kapcsolódó leckék az Iskolai Tudástárban."
+---
+
+<section class="container page-shell py-4 py-lg-5">
+  <nav aria-label="Morzsanavigáció" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="{{ '/' | url }}">Főoldal</a></li>
+      <li class="breadcrumb-item"><a href="{{ '/topics/' | url }}">Témák</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ topic.name }}</li>
+    </ol>
+  </nav>
+
+  <header class="reading-column mb-5">
+    <p class="section-kicker mb-2">Téma</p>
+    <h1 class="page-title">{{ topic.name }}</h1>
+    <p class="page-intro mb-0">{{ topic.lessonCount }} kapcsolódó lecke {{ topic.subjectCount }} tantárgyban.</p>
+  </header>
+
+  <section aria-labelledby="topic-lessons-heading">
+    <div class="section-heading d-flex flex-column flex-sm-row align-items-sm-end justify-content-between gap-2 mb-3">
+      <div>
+        <p class="section-kicker mb-2">Kapcsolódó tananyag</p>
+        <h2 id="topic-lessons-heading" class="mb-0">Leckék</h2>
+      </div>
+      <a class="section-link" href="{{ '/lessons/' | url }}">Összes lecke</a>
+    </div>
+
+    <div class="topic-lesson-list">
+      {% for lesson in topic.lessons %}
+        <article class="topic-lesson surface-panel p-4">
+          <div class="topic-lesson__date">{{ lesson.date | hungarianDate }}</div>
+          <div>
+            <p class="topic-lesson__subject mb-1"><a href="{{ ('/subjects/' + lesson.subjectSlug + '/') | url }}">{{ lesson.subject }}</a></p>
+            <h3 class="h4 mb-2"><a class="stretched-link text-decoration-none" href="{{ ('/lessons/' + lesson.slug + '/') | url }}">{{ lesson.title }}</a></h3>
+            <div class="d-flex flex-wrap gap-1">
+              {% for relatedTopic in lesson.topics %}
+                <a class="topic-badge" href="{{ ('/topics/' + (relatedTopic | slugify) + '/') | url }}">{{ relatedTopic }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</section>

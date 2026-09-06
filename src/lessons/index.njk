@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+title: Leckék
+description: Az Iskolai Tudástár összes leckéje időrendben.
+---
+
+<section class="container page-shell py-5">
+  <div class="reading-column mb-5">
+    <p class="section-kicker mb-2">Böngészés</p>
+    <h1 class="page-title">Leckék</h1>
+    <p class="page-intro mb-0">Az összes tananyag egy helyen, a legutóbb hozzáadott leckékkel kezdve.</p>
+  </div>
+
+  <div class="lesson-index-list">
+    {% for lesson in lessons %}
+      <article class="lesson-index-item surface-panel p-4">
+        <div class="lesson-index-item__date">{{ lesson.date | hungarianDate }}</div>
+        <div>
+          <p class="lesson-index-item__subject mb-1"><a href="{{ ('/subjects/' + lesson.subjectSlug + '/') | url }}">{{ lesson.subject }}</a></p>
+          <h2 class="h4 mb-2"><a class="stretched-link text-decoration-none" href="{{ ('/lessons/' + lesson.slug + '/') | url }}">{{ lesson.title }}</a></h2>
+          <div class="d-flex flex-wrap gap-1">
+            {% for topic in lesson.topics %}
+              <a class="topic-badge" href="{{ ('/topics/' + (topic | slugify) + '/') | url }}">{{ topic }}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

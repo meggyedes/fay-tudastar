@@ -1,0 +1,97 @@
+---
+layout: layouts/base.njk
+title: Kezdőlap
+description: Az iskolai tanulmányok digitális tudástára.
+---
+
+<section class="container page-shell home-hero py-5">
+  <div class="intro-panel home-hero__panel p-4 p-md-5">
+    <p class="section-kicker mb-3">Személyes digitális tudástár</p>
+    <h1 class="page-title">Tananyagok, egy helyen.</h1>
+    <p class="page-intro mb-4">Az iskolai tanulmányaim rendezett, kereshető jegyzetgyűjteménye. A leckék tantárgyak és témák szerint kapcsolódnak egymáshoz.</p>
+    <div class="d-flex flex-wrap gap-2">
+      <a class="btn btn-accent" href="{{ '/subjects/' | url }}">Tantárgyak megnyitása</a>
+      <a class="btn btn-outline-secondary" href="{{ '/lessons/' | url }}">Összes lecke</a>
+      <a class="btn btn-link" href="{{ '/search/' | url }}">Keresés a tudástárban</a>
+    </div>
+  </div>
+</section>
+
+<section class="container page-shell pb-5" aria-labelledby="statistics-heading">
+  <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-2 mb-3">
+    <div>
+      <p class="section-kicker mb-2">Áttekintés</p>
+      <h2 id="statistics-heading" class="h3 mb-0">A tudástár jelenleg</h2>
+    </div>
+    {% if lessons.length %}
+      <p class="small text-body-secondary mb-0">Legutóbbi lecke: {{ lessons[0].date | hungarianDate }}</p>
+    {% endif %}
+  </div>
+  <div class="row row-cols-1 row-cols-sm-3 g-3">
+    <div class="col">
+      <article class="stat-card p-3 p-md-4">
+        <p class="small text-uppercase fw-semibold text-body-secondary mb-2">Tantárgy</p>
+        <p class="stat-card__value mb-0">{{ subjects.length }}</p>
+      </article>
+    </div>
+    <div class="col">
+      <article class="stat-card p-3 p-md-4">
+        <p class="small text-uppercase fw-semibold text-body-secondary mb-2">Lecke</p>
+        <p class="stat-card__value mb-0">{{ lessons.length }}</p>
+      </article>
+    </div>
+    <div class="col">
+      <article class="stat-card p-3 p-md-4">
+        <p class="small text-uppercase fw-semibold text-body-secondary mb-2">Téma</p>
+        <p class="stat-card__value mb-0">{{ topics.length }}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="container page-shell pb-5" aria-labelledby="subjects-heading">
+  <div class="section-heading d-flex flex-column flex-sm-row align-items-sm-end justify-content-between gap-2 mb-3">
+    <div>
+      <p class="section-kicker mb-2">Böngészés</p>
+      <h2 id="subjects-heading" class="mb-0">Tantárgyak</h2>
+    </div>
+    <a class="section-link" href="{{ '/subjects/' | url }}">Összes tantárgy</a>
+  </div>
+  <div class="row row-cols-1 row-cols-md-2 g-3">
+    {% for subject in subjects %}
+      <div class="col">
+        <article class="knowledge-card subject-card p-4">
+          <p class="section-kicker mb-3">{{ subject.lessons.length }} lecke</p>
+          <h3 class="h4 mb-3"><a class="stretched-link text-decoration-none" href="{{ ('/subjects/' + subject.slug + '/') | url }}">{{ subject.name }}</a></h3>
+          <p class="text-body-secondary mb-0">A tantárgy leckéi dátum szerint rendezve, a kapcsolódó témákkal együtt.</p>
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container page-shell pb-5" aria-labelledby="recent-heading">
+  <div class="section-heading d-flex flex-column flex-sm-row align-items-sm-end justify-content-between gap-2 mb-3">
+    <div>
+      <p class="section-kicker mb-2">Tanulás folytatása</p>
+      <h2 id="recent-heading" class="mb-0">Legutóbbi leckék</h2>
+    </div>
+    <a class="section-link" href="{{ '/lessons/' | url }}">Összes lecke</a>
+  </div>
+  <div class="surface-panel recent-lessons-list">
+    {% for lesson in lessons | take(4) %}
+      <article class="recent-lesson px-4 py-3">
+        <div class="recent-lesson__date">{{ lesson.date | hungarianDate }}</div>
+        <div>
+          <p class="recent-lesson__subject mb-1">{{ lesson.subject }}</p>
+          <h3 class="h5 mb-2"><a class="stretched-link text-decoration-none" href="{{ ('/lessons/' + lesson.slug + '/') | url }}">{{ lesson.title }}</a></h3>
+          <div class="d-flex flex-wrap gap-1">
+            {% for topic in lesson.topics | take(3) %}
+              <a class="topic-badge" href="{{ ('/topics/' + (topic | slugify) + '/') | url }}">{{ topic }}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

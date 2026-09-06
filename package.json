@@ -1,0 +1,24 @@
+{
+  "name": "iskolai-tudastar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Statikus, Markdown-alapú iskolai tudástár.",
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "npm run validate && npm run clean && eleventy && pagefind --site _site && npm run validate:site && npm run validate:quality",
+    "clean": "node scripts/clean-output.mjs",
+    "validate": "node scripts/validate-content.mjs",
+    "validate:site": "node scripts/validate-site.mjs",
+    "validate:quality": "node scripts/validate-quality.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "bootstrap": "^5.3.8",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "mathjax-full": "^3.2.1",
+    "pagefind": "^1.4.0"
+  }
+}
