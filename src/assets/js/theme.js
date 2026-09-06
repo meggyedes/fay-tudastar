@@ -1,12 +1,13 @@
 (() => {
   const toggle = document.querySelector("[data-theme-toggle]");
+  const label = document.querySelector("[data-theme-label]");
   if (!toggle) return;
 
   const setLabel = (theme) => {
     const next = theme === "dark" ? "Világos mód bekapcsolása" : "Sötét mód bekapcsolása";
     toggle.setAttribute("aria-label", next);
     toggle.setAttribute("aria-pressed", String(theme === "dark"));
-    toggle.textContent = theme === "dark" ? "Világos mód" : "Sötét mód";
+    if (label) label.textContent = theme === "dark" ? "Világos mód" : "Sötét mód";
   };
 
   setLabel(document.documentElement.dataset.bsTheme);

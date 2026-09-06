@@ -1,3 +1,4 @@
+{% from "components/icons.njk" import icon %}
 <!doctype html>
 <html lang="{{ site.language }}" data-bs-theme="light">
   <head>
@@ -52,10 +53,13 @@
     {% set isLessons = page.url | startsWith('/lessons/') %}
     {% set isTopics = page.url | startsWith('/topics/') %}
     {% set isSearch = page.url == '/search/' %}
-    <header class="site-header border-bottom">
+    <header class="site-header">
       <nav class="navbar navbar-expand-lg py-2" aria-label="Fő navigáció">
         <div class="container">
-          <a class="navbar-brand" href="{{ '/' | url }}">{{ site.name }}</a>
+          <a class="navbar-brand" href="{{ '/' | url }}">
+            <span class="brand-mark">{{ icon('brand') }}</span>
+            <span class="brand-copy"><strong>{{ site.name }}</strong><small>Gépjármű mechatronikai tananyagok</small></span>
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Navigáció megnyitása">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -67,7 +71,7 @@
               <li class="nav-item"><a class="nav-link{% if isTopics %} active{% endif %}" href="{{ '/topics/' | url }}"{% if isTopics %} aria-current="page"{% endif %}>Témák</a></li>
               <li class="nav-item"><a class="nav-link{% if isSearch %} active{% endif %}" href="{{ '/search/' | url }}"{% if isSearch %} aria-current="page"{% endif %}>Keresés</a></li>
             </ul>
-            <button class="btn theme-toggle ms-lg-3" type="button" data-theme-toggle aria-label="Sötét mód bekapcsolása" aria-pressed="false">Téma</button>
+            <button class="btn theme-toggle ms-lg-3" type="button" data-theme-toggle aria-label="Sötét mód bekapcsolása" aria-pressed="false"><span class="theme-toggle__icon">{{ icon('contrast') }}</span><span data-theme-label>Téma</span></button>
           </div>
         </div>
       </nav>
@@ -76,9 +80,9 @@
       {{ content | safe }}
     </main>
     <footer class="site-footer">
-      <div class="container py-4 d-flex flex-column flex-sm-row gap-1 justify-content-between">
-        <span>Iskolai Tudástár</span>
-        <span>Személyes digitális jegyzetgyűjtemény</span>
+      <div class="container py-4 d-flex flex-column flex-sm-row gap-2 justify-content-between align-items-sm-center">
+        <span class="footer-brand">{{ icon('brand') }} <strong>Fáy Tudástár</strong></span>
+        <span>Rendszerezett tudás a műszaki gyakorlat mellé.</span>
       </div>
     </footer>
     <script src="{{ '/assets/vendor/bootstrap/bootstrap.bundle.min.js' | url }}"></script>

@@ -1,0 +1,51 @@
+{% macro icon(name, className='') %}
+  {% set common = 'class="icon ' + className + '" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"' %}
+  {% if name == 'brand' or name == 'cog' %}
+    <svg {{ common | safe }}><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.12 2.12-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V20h-3v-.09A1.7 1.7 0 0 0 10.68 18.35a1.7 1.7 0 0 0-1.88.34l-.06.06-2.12-2.12.06-.06A1.7 1.7 0 0 0 7.02 14.7 1.7 1.7 0 0 0 5.46 13.67H5.4v-3h.06a1.7 1.7 0 0 0 1.56-1.03 1.7 1.7 0 0 0-.34-1.88l-.06-.06 2.12-2.12.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 11.71 4.4v-.06h3v.06a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 2.12 2.12-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.56 1.03h.06v3h-.06A1.7 1.7 0 0 0 19.4 15Z"></path></svg>
+  {% elif name == 'engine' %}
+    <svg {{ common | safe }}><path d="M5 9h10l2 2h2v5h-2l-2 2H5l-2-2v-5l2-2Z"></path><path d="M8 9V6h4v3M8 15h4M20 12h1M6 18v2M14 18v2"></path><circle cx="10" cy="13" r="1.5"></circle></svg>
+  {% elif name == 'chip' %}
+    <svg {{ common | safe }}><rect x="6" y="6" width="12" height="12" rx="2"></rect><rect x="9" y="9" width="6" height="6" rx=".5"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></svg>
+  {% elif name == 'bolt' %}
+    <svg {{ common | safe }}><path d="m13 2-8 11h6l-1 9 8-11h-6l1-9Z"></path></svg>
+  {% elif name == 'diagnostic' %}
+    <svg {{ common | safe }}><path d="M4 5h16v11H4z"></path><path d="M7 16v3h10v-3M7 10h2l2-3 2 6 2-3h2"></path></svg>
+  {% elif name == 'wrench' %}
+    <svg {{ common | safe }}><path d="M14.6 6.1a4.1 4.1 0 0 0-5.3 5.3L3 17.7a2 2 0 0 0 2.8 2.8l6.3-6.3a4.1 4.1 0 0 0 5.3-5.3l-2.7 2.2-2.2-2.2 2.1-2.8Z"></path></svg>
+  {% elif name == 'book' %}
+    <svg {{ common | safe }}><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5ZM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"></path></svg>
+  {% elif name == 'search' %}
+    <svg {{ common | safe }}><circle cx="10.5" cy="10.5" r="5.5"></circle><path d="m15 15 5 5"></path></svg>
+  {% elif name == 'chart' %}
+    <svg {{ common | safe }}><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path><path d="m4 8 5-3 5 5 6-7"></path></svg>
+  {% elif name == 'tag' %}
+    <svg {{ common | safe }}><path d="M3 12V5h7l9 9-7 7-9-9Z"></path><circle cx="7.5" cy="8.5" r="1"></circle></svg>
+  {% elif name == 'arrow' %}
+    <svg {{ common | safe }}><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+  {% elif name == 'contrast' %}
+    <svg {{ common | safe }}><path d="M12 3a9 9 0 1 0 0 18V3Z"></path><path d="M12 3a9 9 0 0 1 0 18"></path></svg>
+  {% elif name == 'circuit' %}
+    <svg {{ common | safe }}><path d="M4 6h5v4h6v-4h5M4 18h5v-4h6v4h5"></path><circle cx="3" cy="6" r="1"></circle><circle cx="21" cy="6" r="1"></circle><circle cx="3" cy="18" r="1"></circle><circle cx="21" cy="18" r="1"></circle></svg>
+  {% endif %}
+{% endmacro %}
+
+{% macro heroMachine() %}
+  <svg class="hero-machine" aria-hidden="true" focusable="false" viewBox="0 0 640 420" fill="none">
+    <defs>
+      <linearGradient id="machine-body" x1="124" y1="90" x2="541" y2="311" gradientUnits="userSpaceOnUse"><stop stop-color="#86D8FF" stop-opacity=".95"></stop><stop offset=".42" stop-color="#1A95E8" stop-opacity=".55"></stop><stop offset="1" stop-color="#083B72" stop-opacity=".2"></stop></linearGradient>
+      <linearGradient id="machine-glow" x1="170" y1="145" x2="525" y2="260" gradientUnits="userSpaceOnUse"><stop stop-color="#D7F7FF"></stop><stop offset="1" stop-color="#16B8FF"></stop></linearGradient>
+      <filter id="machine-shadow"><feGaussianBlur stdDeviation="12"></feGaussianBlur></filter>
+    </defs>
+    <ellipse cx="325" cy="331" rx="226" ry="27" fill="#069AF4" fill-opacity=".24" filter="url(#machine-shadow)"></ellipse>
+    <path d="M122 274c10-43 35-72 75-87l60-22 73-67c19-17 42-27 68-27h72c26 0 49 11 66 31l58 70c30 9 52 30 61 61l12 42H122v-1Z" fill="url(#machine-body)" stroke="#93E2FF" stroke-opacity=".8" stroke-width="3"></path>
+    <path d="m269 165 67-59c16-14 35-21 57-21h65c19 0 36 8 49 23l45 56H269Z" fill="#0A2540" fill-opacity=".9" stroke="#8ADFFF" stroke-opacity=".55" stroke-width="2"></path>
+    <path d="m283 169 44-55M379 86l9 79M451 87l-3 78M503 168l-34-77" stroke="#1BBDFF" stroke-opacity=".65" stroke-width="2"></path>
+    <path d="M148 263h460M169 229h82l24-37h237l37 35h49" stroke="url(#machine-glow)" stroke-width="4"></path>
+    <path d="M190 276h72l14-28h-76l-10 28ZM504 276h73l-10-28h-74l11 28Z" fill="#D5F6FF" fill-opacity=".75"></path>
+    <circle cx="222" cy="288" r="46" fill="#08203A" stroke="#75D8FF" stroke-width="4"></circle><circle cx="222" cy="288" r="20" stroke="#68CFFF" stroke-width="4"></circle>
+    <circle cx="516" cy="288" r="46" fill="#08203A" stroke="#75D8FF" stroke-width="4"></circle><circle cx="516" cy="288" r="20" stroke="#68CFFF" stroke-width="4"></circle>
+    <g stroke="#44C9FF" stroke-width="3"><path d="M307 187v67h57v-54h57v54h56v-70"></path><path d="M335 187v27h28v-27M393 187v27h28v-27"></path><circle cx="352" cy="236" r="8"></circle><circle cx="450" cy="236" r="8"></circle></g>
+    <g fill="#6EE0FF"><circle cx="102" cy="154" r="5"></circle><circle cx="538" cy="118" r="5"></circle><circle cx="578" cy="199" r="5"></circle></g>
+    <path d="M102 154h82l38 34M538 118h-55l-21 45M578 199h-41l-30 27" stroke="#4CD1FF" stroke-dasharray="5 7" stroke-width="2"></path>
+  </svg>
+{% endmacro %}
