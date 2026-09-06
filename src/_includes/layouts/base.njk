@@ -1,4 +1,5 @@
 {% from "components/icons.njk" import icon %}
+{% from "components/home-icons.njk" import homeIcon %}
 <!doctype html>
 <html lang="{{ site.language }}" data-bs-theme="light">
   <head>
@@ -21,6 +22,7 @@
     {% endif %}
     <link rel="stylesheet" href="{{ '/assets/vendor/bootstrap/bootstrap.min.css' | url }}">
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
+    {% if page.url == '/' %}<link rel="stylesheet" href="{{ '/assets/css/home.css' | url }}">{% endif %}
     <script>
       (function () {
         let storedTheme = null;
@@ -46,7 +48,7 @@
     </script>
     <script defer src="{{ '/assets/vendor/mathjax/tex-mml-chtml.js' | url }}"></script>
   </head>
-  <body class="site-shell">
+  <body class="site-shell{% if page.url == '/' %} homepage{% endif %}">
     <a class="visually-hidden-focusable skip-link" href="#main-content">Ugrás a tartalomhoz</a>
     {% set isHome = page.url == '/' %}
     {% set isSubjects = page.url | startsWith('/subjects/') %}
@@ -57,7 +59,7 @@
       <nav class="navbar navbar-expand-lg py-2" aria-label="Fő navigáció">
         <div class="container">
           <a class="navbar-brand" href="{{ '/' | url }}">
-            <span class="brand-mark">{{ icon('brand') }}</span>
+            <span class="brand-mark">{% if isHome %}{{ homeIcon('brand') }}{% else %}{{ icon('brand') }}{% endif %}</span>
             <span class="brand-copy"><strong>{{ site.name }}</strong><small>Gépjármű mechatronikai tananyagok</small></span>
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Navigáció megnyitása">
@@ -71,6 +73,12 @@
               <li class="nav-item"><a class="nav-link{% if isTopics %} active{% endif %}" href="{{ '/topics/' | url }}"{% if isTopics %} aria-current="page"{% endif %}>Témák</a></li>
               <li class="nav-item"><a class="nav-link{% if isSearch %} active{% endif %}" href="{{ '/search/' | url }}"{% if isSearch %} aria-current="page"{% endif %}>Keresés</a></li>
             </ul>
+            {% if isHome %}
+              <form class="hp-nav-search" role="search" aria-label="Gyorskeresés" action="{{ '/search/' | url }}" method="get">
+                <button type="submit" aria-label="Keresés indítása">{{ icon('search') }}</button>
+                <label for="nav-query" class="visually-hidden">Keresőkifejezés</label><input id="nav-query" type="search" name="q" placeholder="Keresés…" required>
+              </form>
+            {% endif %}
             <button class="btn theme-toggle ms-lg-3" type="button" data-theme-toggle aria-label="Sötét mód bekapcsolása" aria-pressed="false"><span class="theme-toggle__icon">{{ icon('contrast') }}</span><span data-theme-label>Téma</span></button>
           </div>
         </div>
@@ -79,12 +87,16 @@
     <main id="main-content" class="site-main">
       {{ content | safe }}
     </main>
+    {% if isHome %}
+      {% include "components/home-footer.njk" %}
+    {% else %}
     <footer class="site-footer">
       <div class="container py-4 d-flex flex-column flex-sm-row gap-2 justify-content-between align-items-sm-center">
         <span class="footer-brand">{{ icon('brand') }} <strong>Fáy Tudástár</strong></span>
         <span>Rendszerezett tudás a műszaki gyakorlat mellé.</span>
       </div>
     </footer>
+    {% endif %}
     <script src="{{ '/assets/vendor/bootstrap/bootstrap.bundle.min.js' | url }}"></script>
     <script src="{{ '/assets/js/theme.js' | url }}"></script>
   </body>

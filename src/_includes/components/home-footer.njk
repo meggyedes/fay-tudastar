@@ -1,0 +1,10 @@
+{% from "components/home-icons.njk" import homeIcon as icon %}
+<footer class="hp-footer">
+  <div class="container hp-shell hp-footer__main">
+    <div class="hp-footer__about"><a class="navbar-brand" href="{{ '/' | url }}"><span class="brand-mark">{{ icon('brand') }}</span><span class="brand-copy"><strong>Fáy Tudástár</strong><small>Gépjármű mechatronikai tananyagok</small></span></a><p>Személyes digitális tudástár iskolai jegyzetekhez és tananyagokhoz. Gépjármű mechatronika.<br>Rendszerezve. Kereshetően. Mindig kéznél.</p><div class="hp-footer__shortcuts"><a href="{{ '/subjects/' | url }}" aria-label="Tantárgyak">{{ icon('book') }}</a><a href="{{ '/lessons/' | url }}" aria-label="Műszaki leckék">{{ icon('wrench') }}</a></div></div>
+    <nav aria-label="Lábléc navigáció"><h2>Navigáció</h2><ul>{% for item in [{label: 'Főoldal', href: '/'}, {label: 'Tantárgyak', href: '/subjects/'}, {label: 'Leckék', href: '/lessons/'}, {label: 'Témák', href: '/topics/'}, {label: 'Keresés', href: '/search/'}] %}<li><a href="{{ item.href | url }}">{{ item.label }}</a></li>{% endfor %}</ul></nav>
+    <nav class="hp-footer__useful" aria-label="Hasznos hivatkozások"><h2>Hasznos</h2><ul><li><a href="{{ '/subjects/elektrotan/' | url }}">Villamos alapok</a></li><li><a href="{{ '/lessons/' | url }}">Összes tananyag</a></li><li><a href="{{ '/search/' | url }}">Keresés a jegyzetekben</a></li></ul></nav>
+    <div class="hp-footer__art"><blockquote>„A technika mögött<br>mindig emberi kíváncsiság áll.”</blockquote><img src="{{ '/assets/images/home/footer-car.svg' | url }}" alt="" width="620" height="210" loading="lazy"><p>Járművek. Rendszerekben gondolkodunk.</p></div>
+  </div>
+  <div class="hp-footer__bottom"><div class="container hp-shell"><small>© 2026 Fáy Tudástár. Minden jog fenntartva.</small><span class="hp-footer__stack">GitHub Pages <span>Eleventy</span> <span>Pagefind</span> <span>Bootstrap</span></span><a class="btn hp-button hp-back-top" href="#main-content" aria-label="Vissza az oldal tetejére">{{ icon('up') }}</a></div></div>
+</footer>

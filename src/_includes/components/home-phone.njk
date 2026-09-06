@@ -1,0 +1,10 @@
+{# Decorative preview: no duplicate headings or keyboard targets. #}
+<div class="hp-phone" aria-hidden="true" inert>
+  <div class="hp-phone__screen">
+    <div class="hp-phone__status"><span>9:41</span><span>▴ ▰ ▰</span></div>
+    <div class="hp-phone__nav">{{ icon('brand') }}<span><b>Fáy Tudástár</b><small>Gépjármű mechatronikai tananyagok</small></span><span class="hp-phone__menu">☰</span></div>
+    <div class="hp-phone__hero"><p class="hp-eyebrow">Tudás. Gyakorlat. Jövő.</p><p class="hp-phone__title">Gépjármű<br>mechatronikai<br>tananyagok,<br><span>egy helyen.</span></p><p>Rendszerezett, kereshető jegyzetek, ábrák és gyakorlati példák a modern gépjármű mechatronika világából.</p><span class="hp-phone__button">Tantárgyak megnyitása {{ icon('arrow') }}</span><span class="hp-phone__button hp-phone__button--outline">{{ icon('search') }} Keresés a tudástárban</span></div>
+    <div class="hp-phone__stats">{% for stat in [{value: subjects.length, label: 'Tantárgy', icon: 'book', tone: 'blue'}, {value: lessons.length, label: 'Lecke', icon: 'file', tone: 'green'}, {value: topics.length, label: 'Téma', icon: 'tag', tone: 'orange'}, {value: searchIndexWords, label: 'Szó', icon: 'chart', tone: 'blue'}] %}<div class="hp-tone-{{ stat.tone }}">{{ icon(stat.icon) }}<span><b>{{ stat.value }}</b><small>{{ stat.label }}</small></span></div>{% endfor %}</div>
+    <div class="hp-phone__home"></div>
+  </div>
+</div>

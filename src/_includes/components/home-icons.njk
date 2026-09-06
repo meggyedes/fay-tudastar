@@ -1,0 +1,17 @@
+{% from "components/icons.njk" import icon %}
+{% macro homeIcon(name, className='') %}
+  {% if name == 'brand' %}
+    <svg class="icon {{ className }}" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="m20 2-1 5-5 2-4-3-6 7 4 4-1 5-5 2 1 9 6 1 3 4-1 5 8 3 3-4 5-1 4 4 7-5-2-5 2-5 5-2-1-9-5-1-3-4 1-5-8-3-3 4-5 1Z" fill="currentColor" stroke="none"/><circle cx="24" cy="24" r="11" fill="#e9f6ff" stroke="none"/><circle cx="24" cy="24" r="7" fill="#349bff" stroke="none"/><circle cx="24" cy="24" r="3" fill="#fff" stroke="none"/></svg>
+  {% elif name in ['file', 'bulb', 'cap', 'sun', 'moon', 'clipboard', 'up', 'pulse'] %}
+    <svg class="icon {{ className }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      {% if name == 'file' %}<path d="M5 2h9l5 5v15H5zM14 2v6h5M8 12h8M8 16h8M8 19h5"/>
+      {% elif name == 'bulb' %}<path d="M8 17c0-3-4-4-4-9a8 8 0 0 1 16 0c0 5-4 6-4 9M8 17h8M9 20h6M10 23h4M12 3a5 5 0 0 1 5 5"/>
+      {% elif name == 'cap' %}<path d="m1 8 11-5 11 5-11 5zM5 10v8c4 3 10 3 14 0v-8M23 8v9"/>
+      {% elif name == 'sun' %}<circle cx="12" cy="12" r="4"/><path d="M12 1v2M12 21v2M1 12h2M21 12h2M4 4l2 2M18 18l2 2M4 20l2-2M18 6l2-2"/>
+      {% elif name == 'moon' %}<path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z"/>
+      {% elif name == 'clipboard' %}<path d="M8 4H4v18h16V4h-4M8 10h1M12 10h4M8 15h1M12 15h4M8 19h8"/><rect x="8" y="2" width="8" height="5" rx="2"/>
+      {% elif name == 'up' %}<path d="M12 20V4M5 11l7-7 7 7"/>
+      {% elif name == 'pulse' %}<path d="M1 13h5l3-10 4 19 3-13 2 4h5"/>{% endif %}
+    </svg>
+  {% else %}{{ icon(name, className) }}{% endif %}
+{% endmacro %}

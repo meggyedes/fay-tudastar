@@ -3,100 +3,76 @@ layout: layouts/base.njk
 title: Kezdőlap
 description: Gépjármű-mechatronikai tananyagok és rendezett műszaki jegyzetek egy helyen.
 ---
-
-{% from "components/icons.njk" import icon, heroMachine %}
-
-<section class="home-hero" aria-labelledby="home-title">
-  <div class="container page-shell home-hero__grid">
-    <div class="home-hero__copy">
-      <p class="section-kicker home-hero__eyebrow">Fáy Tudástár · gépjármű mechatronika</p>
-      <h1 id="home-title" class="home-hero__title">Gépjármű-mechatronikai tananyagok, egy helyen.</h1>
-      <p class="home-hero__lead">Rendszerezett, kereshető jegyzetek, képletek és gyakorlati példák a modern járműtechnika világából.</p>
-      <div class="home-hero__actions">
-        <a class="btn btn-accent btn-lg" href="{{ '/subjects/' | url }}">Tantárgyak megnyitása {{ icon('arrow', 'btn-icon') }}</a>
-        <a class="btn btn-tech-outline btn-lg" href="{{ '/search/' | url }}">{{ icon('search', 'btn-icon') }} Keresés a tudástárban</a>
-      </div>
-      <div class="hero-signal" aria-label="A tudástár technikai területei">
-        <span>{{ icon('engine') }} Motor és hajtás</span>
-        <span>{{ icon('chip') }} Elektronika</span>
-        <span>{{ icon('diagnostic') }} Diagnosztika</span>
+{% from "components/home-icons.njk" import homeIcon as icon %}
+<section class="hp-hero" aria-labelledby="home-title">
+  <div class="hp-hero__art" aria-hidden="true"></div>
+  <div class="container hp-shell hp-hero__inner">
+    <div class="hp-hero__copy">
+      <p class="hp-eyebrow">Tudás. Gyakorlat. Jövő.</p>
+      <h1 id="home-title">Gépjármű<br>mechatronikai<br><span>tananyagok, egy helyen.</span></h1>
+      <p class="hp-hero__lead">Rendszerezett, kereshető jegyzetek, ábrák és gyakorlati példák a modern gépjármű mechatronika világából.</p>
+      <div class="hp-actions">
+        <a class="btn hp-button" href="{{ '/subjects/' | url }}">Tantárgyak megnyitása {{ icon('arrow') }}</a>
+        <a class="btn hp-button hp-button--outline" href="{{ '/search/' | url }}">{{ icon('search') }} Keresés a tudástárban</a>
       </div>
     </div>
-    <div class="home-hero__visual" aria-hidden="true">
-      <div class="hero-grid"></div>
-      <div class="hero-orbit hero-orbit--one"></div>
-      <div class="hero-orbit hero-orbit--two"></div>
-      {{ heroMachine() }}
-      <div class="hero-telemetry hero-telemetry--chip"><span>{{ icon('chip') }}</span><small>ECU / vezérlés</small></div>
-      <div class="hero-telemetry hero-telemetry--pulse"><span>{{ icon('diagnostic') }}</span><small>Élő diagnosztika</small></div>
+    <p class="hp-handwriting hp-hero__note" aria-hidden="true">Technológia,<br>ami mozgat.</p>
+    <div class="hp-hero__systems" role="group" aria-label="Műszaki területek">
+      <span>{{ icon('chip') }} <small>Elektronika</small></span><span>{{ icon('pulse') }} <small>Diagnosztika</small></span><span>{{ icon('cog') }} <small>Mechanika</small></span><span>{{ icon('bolt') }} <small>Villamosság</small></span>
     </div>
+    <div class="hp-benefits">
+      <span>{{ icon('book') }} <span><strong>Tanulj</strong> saját tempódban</span></span><span>{{ icon('cog') }} <span><strong>Értsd meg</strong> a rendszereket</span></span><span>{{ icon('chart') }} <span><strong>Alkalmazd</strong> a gyakorlatban</span></span><span>{{ icon('bulb') }} <span><strong>Építsd a jövőd</strong></span></span>
+    </div>
+    <p class="hp-handwriting hp-hero__signature" aria-hidden="true">Több, mint elmélet.<br>Valódi tudás.</p>
   </div>
 </section>
-
-<section class="container page-shell home-stats" aria-labelledby="statistics-heading">
-  <h2 id="statistics-heading" class="visually-hidden">A tudástár számai</h2>
-  <div class="row g-3">
-    <div class="col-12 col-sm-4">
-      <article class="stat-card stat-card--blue p-3 p-md-4"><span class="stat-card__icon">{{ icon('book') }}</span><div><p class="stat-card__value mb-0">{{ subjects.length }}</p><p class="stat-card__label mb-0">Tantárgy</p></div></article>
+<div class="container hp-shell hp-content">
+  <section class="hp-overview" aria-labelledby="statistics-heading">
+    <h2 id="statistics-heading" class="visually-hidden">A tudástár számai</h2>
+    <div class="hp-stats">
+      <div class="hp-stat hp-tone-blue"><span class="hp-stat__icon">{{ icon('book') }}</span><div><strong>{{ subjects.length }}</strong><span>Tantárgy</span><small>Átfogó tananyagok</small></div></div>
+      <div class="hp-stat hp-tone-green"><span class="hp-stat__icon">{{ icon('file') }}</span><div><strong>{{ lessons.length }}</strong><span>Lecke</span><small>Részletes jegyzetek</small></div></div>
+      <div class="hp-stat hp-tone-orange"><span class="hp-stat__icon">{{ icon('tag') }}</span><div><strong>{{ topics.length }}</strong><span>Téma</span><small>Kereshető tartalom</small></div></div>
+      <div class="hp-stat hp-tone-blue"><span class="hp-stat__icon">{{ icon('chart') }}</span><div><strong>{{ searchIndexWords }}</strong><span>Szó a keresőindexben</span><small>Pagefind keresés</small></div></div>
     </div>
-    <div class="col-12 col-sm-4">
-      <article class="stat-card stat-card--green p-3 p-md-4"><span class="stat-card__icon">{{ icon('circuit') }}</span><div><p class="stat-card__value mb-0">{{ lessons.length }}</p><p class="stat-card__label mb-0">Lecke</p></div></article>
+    <blockquote class="hp-quote"><p>„A jó szakember<br>nem csak javít, hanem<br>meg is érti, miért működik.”</p></blockquote>
+  </section>
+  <section class="hp-areas" aria-labelledby="subjects-heading">
+    <div class="hp-section-heading">
+      <div class="hp-heading-copy">{{ icon('circuit') }}<div><h2 id="subjects-heading">Szakmai területek</h2><p>Fedezd fel a gépjármű mechatronika főbb területeit, és merülj el a részletes tananyagokban!</p></div></div>
+      <a class="hp-section-link" href="{{ '/subjects/' | url }}">Összes tantárgy megtekintése {{ icon('arrow') }}</a>
     </div>
-    <div class="col-12 col-sm-4">
-      <article class="stat-card stat-card--orange p-3 p-md-4"><span class="stat-card__icon">{{ icon('tag') }}</span><div><p class="stat-card__value mb-0">{{ topics.length }}</p><p class="stat-card__label mb-0">Téma</p></div></article>
-    </div>
-  </div>
-</section>
-
-<section class="container page-shell home-subjects pb-5" aria-labelledby="subjects-heading">
-  <div class="section-heading section-heading--visual d-flex flex-column flex-sm-row align-items-sm-end justify-content-between gap-2 mb-4">
-    <div>
-      <p class="section-kicker mb-2">Tanulási területek</p>
-      <h2 id="subjects-heading" class="mb-0">Fedezd fel tantárgyanként</h2>
-    </div>
-    <a class="section-link" href="{{ '/subjects/' | url }}">Minden tantárgy {{ icon('arrow', 'link-icon') }}</a>
-  </div>
-  <div class="row row-cols-1 row-cols-md-2 g-3 g-lg-4">
-    {% for subject in subjects %}
-      {% set subjectIcon = 'book' %}
-      {% if subject.slug == 'mechanika-gepelemek' %}{% set subjectIcon = 'cog' %}{% endif %}
-      {% if subject.slug == 'elektrotan' %}{% set subjectIcon = 'bolt' %}{% endif %}
-      {% if subject.slug == 'elektrotechnika-elektronika-villamossagtan' %}{% set subjectIcon = 'chip' %}{% endif %}
-      {% if subject.slug == 'gepjarmu-szerkezettan' %}{% set subjectIcon = 'engine' %}{% endif %}
-      <div class="col">
-        <article class="subject-visual subject-visual--{{ subject.slug }} p-4 p-lg-5">
-          <div class="subject-visual__pattern"></div>
-          <span class="subject-visual__icon">{{ icon(subjectIcon) }}</span>
-          <p class="subject-visual__meta">{{ subject.lessons.length }} lecke · {{ subject.topicCount }} téma</p>
-          <h3 class="h3 mb-2"><a class="stretched-link" href="{{ ('/subjects/' + subject.slug + '/') | url }}">{{ subject.name }}</a></h3>
-          <p class="mb-4">Rendszerezett tananyag, kapcsolódó témákkal és közvetlen leckeoldalakkal.</p>
-          <span class="subject-visual__action">Tantárgy megnyitása {{ icon('arrow', 'link-icon') }}</span>
+    <div class="hp-area-grid">
+      {% for area in areas %}
+        <article class="hp-area hp-tone-{{ area.tone }}">
+          <img class="hp-area__art" src="{{ ('/assets/images/home/' + area.art + '.svg') | url }}" alt="" width="420" height="320" loading="lazy">
+          <div class="hp-area__copy"><span class="hp-area__icon">{{ icon(area.icon) }}</span><h3><a class="stretched-link" href="{{ area.href | url }}">{{ area.title }}</a></h3><p>{{ area.description }}</p><span class="hp-round-arrow" aria-hidden="true">{{ icon('arrow') }}</span></div>
         </article>
-      </div>
-    {% endfor %}
-  </div>
-</section>
-
-<section class="container page-shell pb-5" aria-labelledby="recent-heading">
-  <div class="section-heading section-heading--visual d-flex flex-column flex-sm-row align-items-sm-end justify-content-between gap-2 mb-4">
-    <div>
-      <p class="section-kicker mb-2">Tanulás folytatása</p>
-      <h2 id="recent-heading" class="mb-0">Legutóbbi leckék</h2>
+      {% endfor %}
     </div>
-    <a class="section-link" href="{{ '/lessons/' | url }}">Összes lecke {{ icon('arrow', 'link-icon') }}</a>
+  </section>
+  <div class="hp-learning-grid">
+    <section class="hp-recent" aria-labelledby="recent-heading">
+      <div class="hp-section-heading"><div class="hp-heading-copy">{{ icon('clipboard') }}<h2 id="recent-heading">Legutóbbi leckék</h2></div><a class="hp-section-link" href="{{ '/lessons/' | url }}">Összes lecke {{ icon('arrow') }}</a></div>
+      <div class="hp-lesson-list">
+        {% for lesson in lessons | take(5) %}
+          {% set presentation = subjectPresentation[lesson.subjectSlug] %}
+          <article class="hp-lesson hp-tone-{{ presentation.tone or 'blue' }}">
+            <img class="hp-lesson__thumb" src="{{ ('/assets/images/home/' + (presentation.art or 'engine') + '.svg') | url }}" alt="" width="96" height="64" loading="lazy">
+            <div class="hp-lesson__content"><h3><a class="stretched-link" href="{{ ('/lessons/' + lesson.slug + '/') | url }}">{{ lesson.title }}</a></h3><div class="hp-lesson__meta"><a class="hp-badge hp-badge--subject" href="{{ ('/subjects/' + lesson.subjectSlug + '/') | url }}" aria-label="{{ lesson.subject }}">{{ presentation.label or lesson.subject }}</a>{% for topic in lesson.topics | take(1) %}<a class="hp-badge" href="{{ ('/topics/' + (topic | slugify) + '/') | url }}">{{ topic }}</a>{% endfor %}</div></div>
+            <time datetime="{{ lesson.date }}" aria-label="{{ lesson.date | hungarianDate }}">{{ lesson.date | replace('-', '. ') }}.</time><span class="hp-lesson__arrow" aria-hidden="true">{{ icon('arrow') }}</span>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+    <div class="hp-discover">
+      <section class="hp-practice" aria-labelledby="practice-heading"><div class="hp-practice__copy"><h2 id="practice-heading">Gyakorlati tudás<br>a való világra.</h2><p>Valós példák, műszaki ábrák és érthető magyarázatok, hogy a tanulás élmény legyen.</p><a class="btn hp-button" href="{{ '/lessons/' | url }}">Kezdj el tanulni {{ icon('arrow') }}</a></div><div class="hp-practice__benefits"><span>{{ icon('cap') }} Rendszerezett<br>tananyagok</span><span>{{ icon('cog') }} Valós példák<br>és ábrák</span><span>{{ icon('chart') }} Fejlődés<br>a gyakorlatban</span></div></section>
+      <section class="hp-search" aria-labelledby="home-search-heading">
+        <div class="hp-heading-copy">{{ icon('circuit') }}<div><h2 id="home-search-heading">Keresés a tudásbázisban</h2><p>Találd meg gyorsan, amire szükséged van!</p></div></div>
+        <form class="hp-search-form" role="search" action="{{ '/search/' | url }}" method="get"><div class="hp-search-field">{{ icon('search') }}<label for="home-query" class="visually-hidden">Keresés a tananyagok között</label><input id="home-query" class="form-control" type="search" name="q" placeholder="Keress a tananyagok között…" required></div><button class="btn hp-button" type="submit">Keresés</button></form>
+        <p class="hp-search__label">Népszerű témák:</p><div class="hp-search-tags">{% for term in suggestedSearches %}<a href="{{ '/search/' | url }}?q={{ term | urlencode }}">{{ term }}</a>{% endfor %}</div>
+      </section>
+      {% include "components/home-phone.njk" %}
+    </div>
   </div>
-  <div class="recent-lessons-list recent-lessons-list--visual">
-    {% for lesson in lessons | take(4) %}
-      <article class="recent-lesson recent-lesson--visual px-4 py-4">
-        <div class="recent-lesson__date"><span>{{ icon('chart') }}</span>{{ lesson.date | hungarianDate }}</div>
-        <div>
-          <p class="recent-lesson__subject mb-1">{{ lesson.subject }}</p>
-          <h3 class="h5 mb-2"><a class="stretched-link text-decoration-none" href="{{ ('/lessons/' + lesson.slug + '/') | url }}">{{ lesson.title }}</a></h3>
-          <div class="d-flex flex-wrap gap-1">
-            {% for topic in lesson.topics | take(3) %}<a class="topic-badge" href="{{ ('/topics/' + (topic | slugify) + '/') | url }}">{{ topic }}</a>{% endfor %}
-          </div>
-        </div>
-      </article>
-    {% endfor %}
-  </div>
-</section>
+</div>
