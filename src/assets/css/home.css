@@ -531,3 +531,35 @@
   .hp-search-form .hp-search-field { flex-basis: 100%; }
   .hp-search-form .hp-button { width: 100%; }
 }
+
+@media (max-width: 575.98px) {
+  .homepage .site-header .container,
+  .hp-shell { box-sizing: border-box; width: 100%; max-width: none; padding-left: 16px; padding-right: 16px; }
+  .homepage .navbar-brand { min-width: 0; margin-right: 10px; }
+  .homepage .brand-copy { min-width: 0; }
+  .homepage .brand-copy strong { overflow-wrap: anywhere; }
+  .homepage .navbar-toggler { flex-shrink: 0; }
+  .hp-nav-search { width: 100%; max-width: none; margin: 12px 0 5px; }
+  .homepage .theme-toggle { margin-left: 0 !important; }
+  .hp-hero__copy,
+  .hp-heading-copy,
+  .hp-heading-copy > div,
+  .hp-areas,
+  .hp-recent,
+  .hp-area-grid,
+  .hp-stats,
+  .hp-lesson-list,
+  .hp-lesson { min-width: 0; }
+  .hp-section-heading { flex-direction: column; align-items: stretch; }
+  .hp-section-link,
+  .hp-areas .hp-section-link { align-self: flex-start; margin-left: 0; max-width: 100%; white-space: normal; }
+  .hp-area-grid > *,
+  .hp-stats > * { min-width: 0; }
+  .hp-lesson { grid-template-columns: 56px minmax(0, 1fr) 28px; padding: 10px; column-gap: 8px; }
+  .hp-lesson__thumb { width: 56px; height: 58px; }
+  .hp-lesson h3,
+  .hp-lesson__meta,
+  .hp-lesson time { min-width: 0; overflow-wrap: anywhere; }
+  .hp-lesson__meta { max-width: 100%; }
+  .hp-lesson time { white-space: normal; }
+}
