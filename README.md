@@ -25,6 +25,7 @@ npm run start
 ```
 
 Az Eleventy kiírja a megnyitható helyi címet. A tartalmi vagy sablonmódosításokkor újraépíti az oldalt.
+Az `npm run start` szándékosan figyelmen kívül hagyja a korábban beállított `SITE_URL` és `ELEVENTY_PATH_PREFIX` változókat, ezért a helyi fejlesztői cím mindig a `http://localhost:8080/` gyökérútvonalon használható. A prefixet kizárólag éles, illetve külön futtatott buildhez add meg.
 
 Az elérhető ellenőrző parancsok:
 

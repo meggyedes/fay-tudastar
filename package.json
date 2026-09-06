@@ -5,7 +5,7 @@
   "description": "Statikus, Markdown-alapú iskolai tudástár.",
   "type": "module",
   "scripts": {
-    "start": "eleventy --serve",
+    "start": "node scripts/start.mjs",
     "build": "npm run validate && npm run clean && eleventy && pagefind --site _site && npm run validate:site && npm run validate:quality",
     "clean": "node scripts/clean-output.mjs",
     "validate": "node scripts/validate-content.mjs",
