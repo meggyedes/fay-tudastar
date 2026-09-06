@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Jármű-mechatronika</title>
+  <desc id="desc">Kék autó sárga villáskulccsal és fogaskerékkel</desc>
+  <path fill="#68a7dd" stroke="#08192d" stroke-width="11" stroke-linejoin="round" d="M15 307h34l62-74c29-36 69-57 115-57h129l74-71 33 31-33 56v119h53v71H15z"/>
+  <path fill="#7898b3" stroke="#08192d" stroke-width="11" stroke-linejoin="round" d="m111 233 58-57h98l-58 57z"/>
+  <path fill="#3f5061" stroke="#08192d" stroke-width="11" d="M226 176h119l-48 57H168z"/>
+  <path fill="#f7d900" stroke="#08192d" stroke-width="11" stroke-linejoin="round" d="m399 25 35 18 35-18v68l-31 18v247l31 18v68l-35-18-35 18v-68l31-18V111l-31-18z"/>
+  <circle cx="115" cy="360" r="57" fill="#33442d" stroke="#08192d" stroke-width="11"/>
+  <circle cx="115" cy="360" r="29" fill="#14241e" stroke="#08192d" stroke-width="11"/>
+  <path fill="#d8d6c6" stroke="#08192d" stroke-width="11" stroke-linejoin="round" d="m302 276 23 15 20-20 24 24-20 20 15 23h28v34h-28l-15 23 20 20-24 24-20-20-23 15v28h-34v-28l-23-15-20 20-24-24 20-20-15-23h-28v-34h28l15-23-20-20 24-24 20 20 23-15v-28h34z"/>
+  <circle cx="285" cy="355" r="32" fill="#68a7dd" stroke="#08192d" stroke-width="11"/>
+  <path fill="#f7d900" d="M15 307h72c-8 17-20 25-42 26H15z"/>
+  <path fill="#8fd0fa" d="M15 362h47v13H15zM194 362h43v13h-43z"/>
+</svg>

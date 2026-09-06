@@ -5,7 +5,7 @@ description: Gépjármű-mechatronikai tananyagok és rendezett műszaki jegyzet
 ---
 {% from "components/home-icons.njk" import homeIcon as icon %}
 <section class="hp-hero" aria-labelledby="home-title">
-  <div class="hp-hero__art" aria-hidden="true"></div>
+  <div class="hp-hero__art" aria-hidden="true"><img src="{{ '/assets/images/Kocsi.png' | url }}" alt="" width="1536" height="1024"></div>
   <div class="container hp-shell hp-hero__inner">
     <div class="hp-hero__copy">
       <p class="hp-eyebrow">Tudás. Gyakorlat. Jövő.</p>
@@ -16,7 +16,7 @@ description: Gépjármű-mechatronikai tananyagok és rendezett műszaki jegyzet
         <a class="btn hp-button hp-button--outline" href="{{ '/search/' | url }}">{{ icon('search') }} Keresés a tudástárban</a>
       </div>
     </div>
-    <p class="hp-handwriting hp-hero__note" aria-hidden="true">Technológia,<br>ami mozgat.</p>
+    <p class="hp-handwriting hp-hero__note" aria-hidden="true">A jármű<br>rendszerben él.</p>
     <div class="hp-hero__systems" role="group" aria-label="Műszaki területek">
       <span>{{ icon('chip') }} <small>Elektronika</small></span><span>{{ icon('pulse') }} <small>Diagnosztika</small></span><span>{{ icon('cog') }} <small>Mechanika</small></span><span>{{ icon('bolt') }} <small>Villamosság</small></span>
     </div>
@@ -45,34 +45,23 @@ description: Gépjármű-mechatronikai tananyagok és rendezett műszaki jegyzet
     <div class="hp-area-grid">
       {% for area in areas %}
         <article class="hp-area hp-tone-{{ area.tone }}">
-          <img class="hp-area__art" src="{{ ('/assets/images/home/' + area.art + '.svg') | url }}" alt="" width="420" height="320" loading="lazy">
+          <img class="hp-area__art" src="{{ ('/assets/images/' + area.image) | url }}" alt="{{ area.title }} illusztráció" width="1536" height="1024" loading="lazy">
           <div class="hp-area__copy"><span class="hp-area__icon">{{ icon(area.icon) }}</span><h3><a class="stretched-link" href="{{ area.href | url }}">{{ area.title }}</a></h3><p>{{ area.description }}</p><span class="hp-round-arrow" aria-hidden="true">{{ icon('arrow') }}</span></div>
         </article>
       {% endfor %}
     </div>
   </section>
-  <div class="hp-learning-grid">
-    <section class="hp-recent" aria-labelledby="recent-heading">
+  <section class="hp-recent hp-recent--full" aria-labelledby="recent-heading">
       <div class="hp-section-heading"><div class="hp-heading-copy">{{ icon('clipboard') }}<h2 id="recent-heading">Legutóbbi leckék</h2></div><a class="hp-section-link" href="{{ '/lessons/' | url }}">Összes lecke {{ icon('arrow') }}</a></div>
       <div class="hp-lesson-list">
         {% for lesson in lessons | take(5) %}
           {% set presentation = subjectPresentation[lesson.subjectSlug] %}
           <article class="hp-lesson hp-tone-{{ presentation.tone or 'blue' }}">
-            <img class="hp-lesson__thumb" src="{{ ('/assets/images/home/' + (presentation.art or 'engine') + '.svg') | url }}" alt="" width="96" height="64" loading="lazy">
+            <img class="hp-lesson__thumb" src="{{ ('/assets/images/' + (presentation.image or 'Kocsi.png')) | url }}" alt="" width="96" height="64" loading="lazy">
             <div class="hp-lesson__content"><h3><a class="stretched-link" href="{{ ('/lessons/' + lesson.slug + '/') | url }}">{{ lesson.title }}</a></h3><div class="hp-lesson__meta"><a class="hp-badge hp-badge--subject" href="{{ ('/subjects/' + lesson.subjectSlug + '/') | url }}" aria-label="{{ lesson.subject }}">{{ presentation.label or lesson.subject }}</a>{% for topic in lesson.topics | take(1) %}<a class="hp-badge" href="{{ ('/topics/' + (topic | slugify) + '/') | url }}">{{ topic }}</a>{% endfor %}</div></div>
             <time datetime="{{ lesson.date }}" aria-label="{{ lesson.date | hungarianDate }}">{{ lesson.date | replace('-', '. ') }}.</time><span class="hp-lesson__arrow" aria-hidden="true">{{ icon('arrow') }}</span>
           </article>
         {% endfor %}
       </div>
     </section>
-    <div class="hp-discover">
-      <section class="hp-practice" aria-labelledby="practice-heading"><div class="hp-practice__copy"><h2 id="practice-heading">Gyakorlati tudás<br>a való világra.</h2><p>Valós példák, műszaki ábrák és érthető magyarázatok, hogy a tanulás élmény legyen.</p><a class="btn hp-button" href="{{ '/lessons/' | url }}">Kezdj el tanulni {{ icon('arrow') }}</a></div><div class="hp-practice__benefits"><span>{{ icon('cap') }} Rendszerezett<br>tananyagok</span><span>{{ icon('cog') }} Valós példák<br>és ábrák</span><span>{{ icon('chart') }} Fejlődés<br>a gyakorlatban</span></div></section>
-      <section class="hp-search" aria-labelledby="home-search-heading">
-        <div class="hp-heading-copy">{{ icon('circuit') }}<div><h2 id="home-search-heading">Keresés a tudásbázisban</h2><p>Találd meg gyorsan, amire szükséged van!</p></div></div>
-        <form class="hp-search-form" role="search" action="{{ '/search/' | url }}" method="get"><div class="hp-search-field">{{ icon('search') }}<label for="home-query" class="visually-hidden">Keresés a tananyagok között</label><input id="home-query" class="form-control" type="search" name="q" placeholder="Keress a tananyagok között…" required></div><button class="btn hp-button" type="submit">Keresés</button></form>
-        <p class="hp-search__label">Népszerű témák:</p><div class="hp-search-tags">{% for term in suggestedSearches %}<a href="{{ '/search/' | url }}?q={{ term | urlencode }}">{{ term }}</a>{% endfor %}</div>
-      </section>
-      {% include "components/home-phone.njk" %}
-    </div>
-  </div>
 </div>
